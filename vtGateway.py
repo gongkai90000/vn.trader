@@ -14,7 +14,7 @@ def zypprint(titlestr,obj=""):
         print  prtstr + str(obj)
     elif isinstance(obj, (object) ) :
         print  prtstr +  '\n'.join(['%s:%s' % item for item in obj.__dict__.items()]) 
-"""
+"""  zyp debug test
 aobj =  {'a':'1', 'b':'2', 'c':'3'}
 aobj =  {'a', 'b', 'c'}
 aobj =  ['a', 'b', 'c']
