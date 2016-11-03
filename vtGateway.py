@@ -6,27 +6,7 @@ from eventEngine import *
 
 from vtConstant import *
 
-""" ------------zyp for debug print   打印对象中的属性名和值-----------Bgn"""
-def zypprint(titlestr,obj=""): 
-    prtstr = time.strftime('%X', time.localtime()) +  "： " + str(titlestr)  # zyptest-记录时间
-    #print(prtstr)
-    if isinstance(obj, (dict,set,list,str,int) ) :
-        print  prtstr + str(obj)
-    elif isinstance(obj, (object) ) :
-        print  prtstr +  '\n'.join(['%s:%s' % item for item in obj.__dict__.items()]) 
-"""  zyp debug test
-aobj =  {'a':'1', 'b':'2', 'c':'3'}
-aobj =  {'a', 'b', 'c'}
-aobj =  ['a', 'b', 'c']
-class caobj():
-    a =1
-aobj = caobj()
-zypprint('titlestr',   aobj)
-"""
-""" ------------zyp for debug print   打印对象中的属性名和值-----------End"""
 
-
-    
 ########################################################################
 class VtGateway(object):
     """交易接口"""
@@ -163,7 +143,6 @@ class VtGateway(object):
 
 
 ########################################################################
-
 class VtBaseData(object):
     """回调函数推送数据的基础类，其他数据类继承于此"""
 
@@ -352,6 +331,8 @@ class VtErrorData(VtBaseData):
         self.errorID = EMPTY_STRING             # 错误代码
         self.errorMsg = EMPTY_UNICODE           # 错误信息
         self.additionalInfo = EMPTY_UNICODE     # 补充信息
+        
+        self.errorTime = time.strftime('%X', time.localtime())    # 错误生成时间
 
 
 ########################################################################
@@ -374,15 +355,15 @@ class VtContractData(VtBaseData):
     #----------------------------------------------------------------------
     def __init__(self):
         """Constructor"""
-        super(VtBaseData, self).__init__()
+        super(VtContractData, self).__init__()
         
-        self.symbol = EMPTY_STRING              # 合约代码
+        self.symbol = EMPTY_STRING              # 代码
         self.exchange = EMPTY_STRING            # 交易所代码
         self.vtSymbol = EMPTY_STRING            # 合约在vt系统中的唯一代码，通常是 合约代码.交易所代码
         self.name = EMPTY_UNICODE               # 合约中文名
         
         self.productClass = EMPTY_UNICODE       # 合约类型
-        self.size = EMPTY_INT                   # 合约大小（单位）
+        self.size = EMPTY_INT                   # 合约大小
         self.priceTick = EMPTY_FLOAT            # 合约最小价格TICK
         
         # 期权相关
