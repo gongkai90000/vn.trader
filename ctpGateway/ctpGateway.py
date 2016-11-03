@@ -42,11 +42,11 @@ offsetMapReverse = {v:k for k,v in offsetMap.items()}
 
 # 交易所类型映射
 exchangeMap = {}
-exchangeMap[EXCHANGE_CFFEX] = 'CFFEX'
-exchangeMap[EXCHANGE_SHFE] = 'SHFE'
-exchangeMap[EXCHANGE_CZCE] = 'CZCE'
-exchangeMap[EXCHANGE_DCE] = 'DCE'
-exchangeMap[EXCHANGE_SSE] = 'SSE'
+exchangeMap[EXCHANGE_CFFEX] = 'CFFEX'  #中金所
+exchangeMap[EXCHANGE_SHFE] = 'SHFE'    #上期所
+exchangeMap[EXCHANGE_CZCE] = 'CZCE'    #郑商所
+exchangeMap[EXCHANGE_DCE] = 'DCE'      #大商所
+exchangeMap[EXCHANGE_SSE] = 'SSE'      #上海证券交易所
 exchangeMap[EXCHANGE_UNKNOWN] = ''
 exchangeMapReverse = {v:k for k,v in exchangeMap.items()}
 
