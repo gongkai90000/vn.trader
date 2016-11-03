@@ -9,8 +9,12 @@ vtSymbol直接使用symbol
 
 #import raise Exception  #zyp- added for remote onrsp debuuger
 
+
 import os
 import json
+
+import pydevd  #然后在你需要断点的位置写上 pydevd.settrace()
+
 from copy import copy
 
 from vnctpmd import MdApi
@@ -59,6 +63,18 @@ posiDirectionMap[DIRECTION_NET] = defineDict["THOST_FTDC_PD_Net"]
 posiDirectionMap[DIRECTION_LONG] = defineDict["THOST_FTDC_PD_Long"]
 posiDirectionMap[DIRECTION_SHORT] = defineDict["THOST_FTDC_PD_Short"]
 posiDirectionMapReverse = {v:k for k,v in posiDirectionMap.items()}
+
+
+###########################zyp debug for onRsp...API###########################
+def zypcallback_debug():
+    try:#python解释器没有安装此包也可以调试，import时解释器提示没有此包不必理会，调试器pydevd在pycharm/eclipse调试时自带，如果ide也没有，则需要手动安装
+        import pydevd
+        pydevd.settrace(suspend=False, trace_only_current_thread=True)
+    except:
+        print("python解释器运行时无法跟踪断点调试")
+        pass
+    pass
+
 
 
 ########################################################################
@@ -220,7 +236,9 @@ class CtpMdApi(MdApi):
     def onFrontConnected(self):
         """服务器连接"""
         self.connectionStatus = True
-        
+
+        pydevd.settrace()  #zyp for hui debug
+
         log = VtLogData()
         log.gatewayName = self.gatewayName
         log.logContent = u'行情服务器连接成功'
@@ -451,8 +469,8 @@ class CtpTdApi(TdApi):
     def onFrontConnected(self):
         """服务器连接"""
         self.connectionStatus = True
- 
-        #raise Exception    #zyp- for remote debuger
+
+        pydevd.settrace()  # zyp for hui debug
  
         log = VtLogData()
         log.gatewayName = self.gatewayName
