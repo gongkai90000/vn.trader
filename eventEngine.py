@@ -4,7 +4,7 @@
 from Queue import Queue, Empty
 from threading import Thread
 from time import sleep
-from collections import defaultdict
+from collections import defaultdict  #其实defaultdict 就是一个字典，只不过python自动的为它的键赋了一个初始值。这也就是说，你不显示的为字典的键赋初值python不会报错
 
 # 第三方模块
 from PyQt4.QtCore import QTimer
