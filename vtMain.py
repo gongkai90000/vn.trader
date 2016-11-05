@@ -9,8 +9,8 @@ import vtPath
 from vtEngine import MainEngine
 from uiMainWindow import *
 
-# 文件路径名
-path = os.path.abspath(os.path.dirname(__file__))    
+# 文件路径名 zyp 解决了输入法的问题
+path = os.path.abspath(os.path.dirname(__file__))
 ICON_FILENAME = 'vnpy.ico'
 ICON_FILENAME = os.path.join(path, ICON_FILENAME)  
 
