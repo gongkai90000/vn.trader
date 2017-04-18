@@ -187,7 +187,7 @@ class MainWindow(QtGui.QMainWindow):
         
         self.sbCount = 0
         self.sbTrigger = 10     # 10秒刷新一次
-        self.signalStatusBar.connect(self.updateStatusBar)
+        self.signalStatusBar.connect(self.updateStatusBar)  #先定义signal的处理函数slot，然后在发射信号给slot处理
         self.eventEngine.register(EVENT_TIMER, self.signalStatusBar.emit)
         
     #----------------------------------------------------------------------

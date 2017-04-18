@@ -520,7 +520,7 @@ class CtaEngine(object):
         
     #----------------------------------------------------------------------
     def callStrategyFunc(self, strategy, func, params=None):
-        """调用策略的函数，若触发异常则捕捉"""
+        """调用策略的函数，若触发异常则捕捉"""   #相比v1.1只是增加了异常的处理，实质未变
         try:
             if params:
                 func(params)

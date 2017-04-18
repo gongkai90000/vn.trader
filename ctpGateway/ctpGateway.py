@@ -555,6 +555,8 @@ class CtpTdApi(TdApi):
         err.errorMsg = error['ErrorMsg'].decode('gbk')
         self.gateway.onError(err)
         
+        zypprint("call TdApi.onRspOrderInsert, reqID:", n )
+        zypprint("call TdApi.onRspOrderInsert, error:", err )        
     #----------------------------------------------------------------------
     def onRspParkedOrderInsert(self, data, error, n, last):
         """"""
@@ -761,6 +763,8 @@ class CtpTdApi(TdApi):
         # 推送
         self.gateway.onContract(contract)
 
+        #zypprint(' onRspQryInstrument: 返回的合约的值', contract)   #zyp-打印合约的值
+        
         if last:
             log = VtLogData()
             log.gatewayName = self.gatewayName
@@ -985,6 +989,7 @@ class CtpTdApi(TdApi):
         # 推送
         self.gateway.onOrder(order)
         
+        zypprint("call OnRtnOrder: ", order )
     #----------------------------------------------------------------------
     def onRtnTrade(self, data):
         """成交回报"""
@@ -1017,6 +1022,7 @@ class CtpTdApi(TdApi):
         # 推送
         self.gateway.onTrade(trade)
         
+        zypprint("call onRtnTrade: ", trade )
     #----------------------------------------------------------------------
     def onErrRtnOrderInsert(self, data, error):
         """发单错误回报（交易所）"""
@@ -1026,6 +1032,7 @@ class CtpTdApi(TdApi):
         err.errorMsg = error['ErrorMsg'].decode('gbk')
         self.gateway.onError(err)
         
+        zypprint("call onErrRtnOrderInsert：", err)
     #----------------------------------------------------------------------
     def onErrRtnOrderAction(self, data, error):
         """撤单错误回报（交易所）"""

@@ -6,6 +6,24 @@ from eventEngine import *
 
 from vtConstant import *
 
+""" ------------zyp for debug print   打印对象中的属性名和值-----------Bgn"""
+def zypprint(titlestr,obj=""): 
+    prtstr = time.strftime('%X', time.localtime()) +  "： " + str(titlestr)  # zyptest-记录时间
+    #print(prtstr)
+    if isinstance(obj, (dict,set,list,str,int) ) :
+        print  prtstr + str(obj)
+    elif isinstance(obj, (object) ) :
+        print  prtstr +  '\n'.join(['%s:%s' % item for item in obj.__dict__.items()]) 
+"""
+aobj =  {'a':'1', 'b':'2', 'c':'3'}
+aobj =  {'a', 'b', 'c'}
+aobj =  ['a', 'b', 'c']
+class caobj():
+    a =1
+aobj = caobj()
+zypprint('titlestr',   aobj)
+"""
+""" ------------zyp for debug print   打印对象中的属性名和值-----------End"""
 
 ########################################################################
 class VtGateway(object):

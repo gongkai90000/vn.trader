@@ -97,11 +97,11 @@ class DoubleEmaDemo(CtaTemplate):
         # 计算K线
         tickMinute = tick.datetime.minute
         
-        if tickMinute != self.barMinute:    
+        if tickMinute != self.barMinute:    #表示开始一根新的分钟K线（Bar）
             if self.bar:
-                self.onBar(self.bar)
+                self.onBar(self.bar)       #新的Bar进行处理
             
-            bar = CtaBarData()              
+            bar = CtaBarData()
             bar.vtSymbol = tick.vtSymbol
             bar.symbol = tick.symbol
             bar.exchange = tick.exchange
@@ -122,7 +122,7 @@ class DoubleEmaDemo(CtaTemplate):
             self.bar = bar                  # 这种写法为了减少一层访问，加快速度
             self.barMinute = tickMinute     # 更新当前的分钟
             
-        else:                               # 否则继续累加新的K线
+        else:                               # 否则继续累加新的K线, zyp为同一根K线
             bar = self.bar                  # 写法同样为了加快速度
             
             bar.high = max(bar.high, tick.lastPrice)
@@ -133,7 +133,7 @@ class DoubleEmaDemo(CtaTemplate):
     def onBar(self, bar):
         """收到Bar推送（必须由用户继承实现）"""
         # 计算快慢均线
-        if not self.fastMa0:        
+        if not self.fastMa0:   #第一个Tick
             self.fastMa0 = bar.close
             self.fastMa.append(self.fastMa0)
         else:
@@ -141,7 +141,7 @@ class DoubleEmaDemo(CtaTemplate):
             self.fastMa0 = bar.close * self.fastK + self.fastMa0 * (1 - self.fastK)
             self.fastMa.append(self.fastMa0)
             
-        if not self.slowMa0:
+        if not self.slowMa0:   #zyp 第一个Tick
             self.slowMa0 = bar.close
             self.slowMa.append(self.slowMa0)
         else:

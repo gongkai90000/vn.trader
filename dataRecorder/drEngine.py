@@ -220,7 +220,8 @@ class DrEngine(object):
         """退出"""
         if self.active:
             self.active = False
-            self.thread.join()
+            self.thread.join()  #Thread.join()的作用是阻塞主进程，等Thread进程完成后，再执行主进程Thread.join(n)后面的代码；
+                                #Thread.join(n)的作用是阻塞主进程n秒后，再执行主进程Thread.join(n)后面的代码；
         
     #----------------------------------------------------------------------
     def writeDrLog(self, content):
